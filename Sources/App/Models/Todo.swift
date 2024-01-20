@@ -4,16 +4,36 @@ import Vapor
 final class Todo: Model, Content {
   static let schema = "todos"
 
-  @ID(key: .id)
+  @ID
   var id: UUID?
 
   @Field(key: "title")
   var title: String
 
+  @Field(key: "note")
+  var note: String
+
+  @Enum(key: "state")
+  var state: State
+
+  @Timestamp(key: "created_at", on: .create)
+  var createdAt: Date?
+
+  @Timestamp(key: "updated_at", on: .update)
+  var updatedAt: Date?
+
   init() {}
 
-  init(id: UUID? = nil, title: String) {
+  init(id: UUID? = nil, title: String, note: String, state: State) {
     self.id = id
     self.title = title
+    self.note = note
+    self.state = state
+  }
+}
+
+extension Todo {
+  enum State: String, Hashable, Content, CaseIterable {
+    case todo, doing, done
   }
 }
