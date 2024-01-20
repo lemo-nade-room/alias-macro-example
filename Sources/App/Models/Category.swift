@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import Alias
 
 final class Category: Model, Content {
   static let schema = "categories"
@@ -7,6 +8,7 @@ final class Category: Model, Content {
   @ID
   var id: UUID?
 
+  @Alias("名前")
   @Field(key: "name")
   var name: String
 

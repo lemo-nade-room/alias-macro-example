@@ -1,3 +1,4 @@
+import Alias
 import Fluent
 import Vapor
 
@@ -7,15 +8,19 @@ final class Todo: Model, Content {
   @ID
   var id: UUID?
 
+  @Alias("カテゴリ")
   @Parent(key: "category_id")
   var category: Category
 
+  @Alias("タイトル")
   @Field(key: "title")
   var title: String
 
+  @Alias("メモ")
   @Field(key: "note")
   var note: String
 
+  @Alias("状態")
   @Enum(key: "state")
   var state: State
 
@@ -38,6 +43,11 @@ final class Todo: Model, Content {
 
 extension Todo {
   enum State: String, Hashable, Content, CaseIterable {
-    case todo, doing, done
+    @Alias("未完了")
+    case todo
+    @Alias("進行中")
+    case doing
+    @Alias("完了")
+    case done
   }
 }

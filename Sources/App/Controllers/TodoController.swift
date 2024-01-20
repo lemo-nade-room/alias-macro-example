@@ -89,9 +89,10 @@ struct TodoController: RouteCollection {
     }
 
     todo.$category.id = try category.requireID()
-    todo.title = content.title
-    todo.note = content.note
-    todo.state = content.state
+    todo.タイトル = content.title
+    todo.メモ = content.note
+    todo.状態 = content.state
+    
     try await todo.update(on: req.db)
 
     return .noContent
