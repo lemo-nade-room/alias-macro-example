@@ -13,6 +13,8 @@ let package = Package(
     .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
     // 🐘 Fluent driver for Postgres.
     .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
+    // Alias Macro
+    .package(url: "https://github.com/p-x9/AliasMacro.git", from: "0.6.0"),
   ],
   targets: [
     .executableTarget(
@@ -21,6 +23,8 @@ let package = Package(
         .product(name: "Fluent", package: "fluent"),
         .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
         .product(name: "Vapor", package: "vapor"),
+        // Alias Macro
+        .product(name: "Alias", package: "AliasMacro"),
       ]
     ),
     .testTarget(
