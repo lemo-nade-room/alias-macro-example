@@ -7,6 +7,7 @@ extension Todo {
 
       try await database.schema("todos")
         .id()
+        .field("category_id", .uuid, .required, .references("categories", "id"))
         .field("title", .string, .required)
         .field("note", .string, .required)
         .field("state", stateSchema, .required)

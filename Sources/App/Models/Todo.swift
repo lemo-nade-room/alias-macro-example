@@ -7,6 +7,9 @@ final class Todo: Model, Content {
   @ID
   var id: UUID?
 
+  @Parent(key: "category_id")
+  var category: Category
+
   @Field(key: "title")
   var title: String
 
@@ -24,8 +27,9 @@ final class Todo: Model, Content {
 
   init() {}
 
-  init(id: UUID? = nil, title: String, note: String, state: State) {
+  init(id: UUID? = nil, categoryId: Category.IDValue, title: String, note: String, state: State) {
     self.id = id
+    self.$category.id = categoryId
     self.title = title
     self.note = note
     self.state = state
